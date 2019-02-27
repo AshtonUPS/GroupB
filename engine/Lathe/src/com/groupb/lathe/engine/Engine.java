@@ -84,7 +84,7 @@ public class Engine implements Runnable {
 			window.update();
 			frames++;
 
-			if (now - timer > 1) {
+			if (glfwGetTime() - timer > 1) {
 				timer++;
 				System.out.println("Updates : " + updates + " Frames : " + frames);
 				frames = 0;

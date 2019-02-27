@@ -28,7 +28,7 @@ public class TestGame implements IGameComponent {
 
 		gos = new ArrayList<GameObject>();
 
-		for (int i = 0; i < 1000; i++) {
+		for (int i = 0; i < 10; i++) {
 			gos.add(new GameObject(1, 1, 1, 0));
 		}
 
