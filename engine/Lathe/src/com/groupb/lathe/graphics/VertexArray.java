@@ -88,5 +88,13 @@ public class VertexArray {
 		draw();
 		unbind();
 	}
+	
+	/**
+	 * Removes the vao from memory
+	 */
+	public void cleanup() {
+		unbind();
+		glDeleteVertexArrays(vao);
+	}
 
 }
