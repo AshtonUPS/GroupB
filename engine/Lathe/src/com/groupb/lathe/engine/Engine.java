@@ -2,6 +2,13 @@ package com.groupb.lathe.engine;
 
 import static org.lwjgl.glfw.GLFW.glfwGetTime;
 
+/**
+ * The engine class is the brains behind the operation. It does everything from
+ * setting up the window to keeping events in time.
+ * 
+ * @author ashtonwalden
+ *
+ */
 public class Engine implements Runnable {
 
 	final float FPS = 60f;
@@ -13,12 +20,23 @@ public class Engine implements Runnable {
 
 	private IGameComponent gameLogic;
 
+	/**
+	 * Instantiates an engine.
+	 * 
+	 * @param name      The name for the window.
+	 * @param width     Width of the window
+	 * @param height    Height of the window
+	 * @param gameLogic The game logic
+	 */
 	public Engine(String name, int width, int height, IGameComponent gameLogic) {
 		gameThread = new Thread(this, "GAMELOOP");
 		this.gameLogic = gameLogic;
 		this.window = new Window(name, width, height);
 	}
 
+	/**
+	 * This is called to kick off the game. No other methods need to be called.
+	 */
 	public void start() {
 		String osName = System.getProperty("os.name");
 		if (osName.contains("Mac")) {
@@ -99,19 +117,31 @@ public class Engine implements Runnable {
 		 */
 	}
 
+	/**
+	 * Called as often as possible
+	 */
 	private void input() {
 		gameLogic.input();
 	}
 
+	/**
+	 * Guaranteed to be called 60 times per second
+	 */
 	private void update() {
 		gameLogic.update();
 	}
 
+	/**
+	 * Attempts to call 60 times per second
+	 */
 	private void render() {
 		window.clear();
 		gameLogic.render();
 	}
 
+	/**
+	 * Called at the end of the game. It is basically a deconstructor.
+	 */
 	private void cleanup() {
 		window.cleanup();
 		gameLogic.cleanup();

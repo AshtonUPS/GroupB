@@ -24,14 +24,28 @@ import java.util.Map;
 
 import org.lwjgl.BufferUtils;
 
+/**
+ * Handles loading textures.
+ * 
+ * @author ashtonwalden
+ *
+ */
 public class Texture {
 
 	private int width, height, id;
-	
+
 	private static Map<String, Texture> textures = new HashMap<String, Texture>();
-	
+
+	/**
+	 * To prevent loading duplicate textures. All textures are stored in a HashMap.
+	 * This method will return existing textures, or instantiate them if they don't
+	 * exist.
+	 * 
+	 * @param path Path to the texture
+	 * @return The texture object
+	 */
 	public static Texture getByPath(String path) {
-		if(textures.containsKey(path)) {
+		if (textures.containsKey(path)) {
 			return textures.get(path);
 		} else {
 			Texture t = new Texture(path);
@@ -66,18 +80,34 @@ public class Texture {
 		return id;
 	}
 
+	/**
+	 * Binds the texture
+	 */
 	public void bind() {
 		glBindTexture(GL_TEXTURE_2D, id);
 	}
 
+	/**
+	 * Unbinds the texture
+	 */
 	public void unbind() {
 		glBindTexture(GL_TEXTURE_2D, 0);
 	}
 
+	/**
+	 * Returns the width
+	 * 
+	 * @return Texture width
+	 */
 	public int getWidth() {
 		return this.width;
 	}
 
+	/**
+	 * Returns the height
+	 * 
+	 * @return Texture height
+	 */
 	public int getHeight() {
 		return this.height;
 	}

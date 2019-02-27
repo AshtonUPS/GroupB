@@ -1,6 +1,7 @@
-package com.groupb.lathe.engine;
+package com.groupb.lathe.tests;
 
-import com.groupb.lathe.tests.TestGame;
+import com.groupb.lathe.engine.Engine;
+import com.groupb.lathe.engine.IGameComponent;
 
 public class GameLauncher {
 	

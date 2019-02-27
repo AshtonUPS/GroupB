@@ -8,6 +8,15 @@ import com.groupb.lathe.graphics.VertexArray;
 import com.groupb.lathe.math.Matrix4f;
 import com.groupb.lathe.math.Vector3f;
 
+/**
+ * A game object is an object that exists within the game world. This is an
+ * abstract class and shouldn't be instantiated directly.
+ * 
+ *
+ * 
+ * @author ashtonwalden
+ *
+ */
 public class GameObject {
 
 	private VertexArray va;
@@ -21,7 +30,7 @@ public class GameObject {
 	float x = 0f, y = 0f, c = 0f, rotation = 0f;
 
 	public GameObject(float width, float height, float scale, float depth, Texture texture) {
-
+		//TODO finish this class
 		this.texture = texture;
 
 		float[] vertices = new float[] { -width / 2, -height / 2, depth, -width / 2, height / 2, depth, width / 2,
@@ -60,11 +69,9 @@ public class GameObject {
 	public void bind() {
 		shader.enable();
 		texture.bind();
-		va.bind();
 	}
 
 	public void unbind() {
-		va.unbind();
 		texture.unbind();
 		shader.disable();
 	}

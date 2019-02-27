@@ -7,10 +7,23 @@ import static org.lwjgl.opengl.GL30.*;
 
 import com.groupb.lathe.util.BufferUtils;
 
+/**
+ * Handles VertexArrays
+ * 
+ * @author ashtonwalden
+ *
+ */
 public class VertexArray {
 
 	private int count, vao, vbo, ibo, tco;
 
+	/**
+	 * Creates a vertex array
+	 * 
+	 * @param vertices  Array of Vertices
+	 * @param indices   Array of indices
+	 * @param texCoords Array of texCoords
+	 */
 	public VertexArray(float[] vertices, byte[] indices, float[] texCoords) {
 		count = indices.length;
 
@@ -41,22 +54,35 @@ public class VertexArray {
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 		glBindVertexArray(0);
 	}
-	
+
+	/**
+	 * Binds the vertex array
+	 */
 	public void bind() {
 		glBindVertexArray(vao);
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo);
 	}
 	
+	
+	/**
+	 * Unbinds the vertex array
+	 */
 	public void unbind() {
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 		glBindVertexArray(0);
 
 	}
-	
+
+	/**
+	 * Draws the elements in the vertex array
+	 */
 	public void draw() {
 		glDrawElements(GL_TRIANGLES, count, GL_UNSIGNED_BYTE, 0);
 	}
-	
+
+	/**
+	 * Helper method that binds, renders, then unbinds the vertex array
+	 */
 	public void render() {
 		bind();
 		draw();

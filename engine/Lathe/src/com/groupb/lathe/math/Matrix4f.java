@@ -8,10 +8,24 @@ import java.nio.FloatBuffer;
 
 import com.groupb.lathe.util.BufferUtils;
 
+/**
+ * Handles matrix math for us. We do have joml as a dependency, but this takes
+ * out some overhead.
+ * 
+ * All methods assume Column Major ordering because OpenGL expects this format.
+ * 
+ * @author ashtonwalden
+ *
+ */
 public class Matrix4f {
 
 	public float[] matrix = new float[4 * 4];
 
+	/**
+	 * Creates an identity matrix
+	 * 
+	 * @return An identity matrix
+	 */
 	public static Matrix4f identity() {
 		Matrix4f result = new Matrix4f();
 
@@ -28,7 +42,12 @@ public class Matrix4f {
 
 	}
 
-	// Column Major ordering because openGL
+	/**
+	 * Multiplies by the given matrix
+	 * 
+	 * @param matrix Matrix to multiply by
+	 * @return The newly multiplied matrix
+	 */
 	public Matrix4f multiply(Matrix4f matrix) {
 		Matrix4f result = new Matrix4f();
 
@@ -45,6 +64,12 @@ public class Matrix4f {
 
 	}
 
+	/**
+	 * Translates by the given vector
+	 * 
+	 * @param vector Vector to translate by
+	 * @return The translated matrix
+	 */
 	public static Matrix4f translate(Vector3f vector) {
 		Matrix4f result = identity();
 
@@ -56,7 +81,12 @@ public class Matrix4f {
 
 	}
 
-	// Only supports rotation around the z axis
+	/**
+	 * Rotates around the z axis
+	 * 
+	 * @param angle Angle in degrees
+	 * @return Rotated matrix
+	 */
 	public static Matrix4f rotate(float angle) {
 		Matrix4f result = identity();
 		float r = (float) toRadians(angle);
@@ -73,6 +103,12 @@ public class Matrix4f {
 
 	}
 
+	/**
+	 * Scales the matrix by a float
+	 * 
+	 * @param scale The scale
+	 * @return Scaled matrix
+	 */
 	public static Matrix4f scale(float scale) {
 		Matrix4f result = identity();
 
@@ -83,7 +119,17 @@ public class Matrix4f {
 
 	}
 
-	// Projection matrix
+	/**
+	 * Creates an orthographic matrix
+	 * 
+	 * @param left   Left clipping
+	 * @param right  Right clipping
+	 * @param bottom Bottom clipping
+	 * @param top    Top clipping
+	 * @param near   near clipping
+	 * @param far    far clipping
+	 * @return the orthographic matrix
+	 */
 	public static Matrix4f orthographic(float left, float right, float bottom, float top, float near, float far) {
 		Matrix4f result = identity();
 
@@ -98,6 +144,12 @@ public class Matrix4f {
 		return result;
 	}
 
+	/**
+	 * Easily converts the matrix to a float buffer. OpenGL only recognizes float
+	 * buffers.
+	 * 
+	 * @return The matrix as a float buffer
+	 */
 	public FloatBuffer toFloatBuffer() {
 		return BufferUtils.createFloatBuffer(matrix);
 	}
