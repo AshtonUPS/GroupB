@@ -98,4 +98,8 @@
 			<version>1.0</version>
 		</dependency>
 	</dependencies>
+	<name>Lathe Engine</name>
+	<organization>
+		<name>GroupB</name>
+	</organization>
 </project>
