@@ -121,7 +121,7 @@ public class Engine implements Runnable {
 	 * Called as often as possible
 	 */
 	private void input() {
-		gameLogic.input();
+		gameLogic.input(window);
 	}
 
 	/**

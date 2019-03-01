@@ -1,6 +1,6 @@
 package com.groupb.lathe.engine;
 
-import static org.lwjgl.glfw.GLFW.GLFW_CONTEXT_VERSION_MAJOR;
+import static org.lwjgl.glfw.GLFW.*;
 import static org.lwjgl.glfw.GLFW.GLFW_CONTEXT_VERSION_MINOR;
 import static org.lwjgl.glfw.GLFW.GLFW_OPENGL_CORE_PROFILE;
 import static org.lwjgl.glfw.GLFW.GLFW_OPENGL_FORWARD_COMPAT;
@@ -107,6 +107,10 @@ public class Window {
 	 */
 	public void clear() {
 		glClear(GL_COLOR_BUFFER_BIT);
+	}
+
+	public boolean isKeyPressed(int keyCode) {
+		return glfwGetKey(handle, keyCode) == GLFW_PRESS;
 	}
 
 	/**

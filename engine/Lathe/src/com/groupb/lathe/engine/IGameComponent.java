@@ -10,7 +10,7 @@ public interface IGameComponent {
 
 	void init();
 
-	void input();
+	void input(Window window);
 
 	void update();
 
