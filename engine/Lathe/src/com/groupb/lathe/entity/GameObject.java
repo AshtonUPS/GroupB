@@ -21,7 +21,7 @@ public class GameObject {
 
 	private VertexArray va;
 
-	Matrix4f model_matrix, view_matrix;
+	Matrix4f model_matrix;
 
 	Texture texture;
 
@@ -42,7 +42,6 @@ public class GameObject {
 
 		va = new VertexArray(vertices, indices, tcs);
 
-		view_matrix = Matrix4f.identity();
 		model_matrix = Matrix4f.identity();
 
 		Random r = new Random();
@@ -78,9 +77,8 @@ public class GameObject {
 
 	public void render() {
 		bind();
-		Shader.BASIC.setUniformMat4f("vw_matrix",
-				view_matrix.multiply(Matrix4f.translate(new Vector3f(x, y, 0))).multiply(Matrix4f.rotate(rotation)));
-		Shader.BASIC.setUniformMat4f("model_matrix", model_matrix);
+		Shader.BASIC.setUniformMat4f("model_matrix",
+				model_matrix.multiply(Matrix4f.translate(new Vector3f(x, y, 0))).multiply(Matrix4f.rotate(rotation)));
 		va.render();
 		unbind();
 	}
