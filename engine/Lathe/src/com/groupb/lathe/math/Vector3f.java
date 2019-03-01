@@ -22,4 +22,16 @@ public class Vector3f {
 		this.z = 0f;
 	}
 
+	public void add(Vector3f v2) {
+		this.x += v2.x;
+		this.y += v2.y;
+		this.z += v2.z;
+	}
+
+	public float distance(Vector3f v2) {
+		float a = v2.x - x;
+		float b = v2.y - y;
+		return (float) Math.sqrt(a * a + b * b);
+	}
+
 }
