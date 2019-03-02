@@ -68,11 +68,7 @@ public class TestGame implements IGameComponent {
 	public void update() {
 		b1.update();
 		b2.update();
-		l.update();
-		
-		if(b1.collides(b2)) {
-			b1.handleCollision(b2);
-		}
+		l.update();	
 		
 	}
 
