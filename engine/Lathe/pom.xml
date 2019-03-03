@@ -6,6 +6,15 @@
 	<artifactId>Lathe</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<build>
+		<resources>
+			<resource>
+				<directory>./</directory>
+				<includes>
+					<include>shaders/**</include>
+					<include>resources/**</include>
+				</includes>
+			</resource>
+		</resources>
 		<sourceDirectory>src</sourceDirectory>
 		<plugins>
 			<plugin>
@@ -19,7 +28,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-shade-plugin</artifactId>
-				<version>2.3</version>
+				<version>3.2.1</version>
 				<executions>
 					<execution>
 						<phase>package</phase>
@@ -27,7 +36,12 @@
 							<goal>shade</goal>
 						</goals>
 						<configuration>
-							<shadedArtifactAttached>true</shadedArtifactAttached>
+							<transformers>
+								<transformer
+									implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+									<mainClass>com.groupb.lathe.tests.GameLauncher</mainClass>
+								</transformer>
+							</transformers>
 						</configuration>
 					</execution>
 				</executions>
@@ -35,7 +49,6 @@
 		</plugins>
 	</build>
 	<properties>
-		<start-class>com.groupb.lathe.tests.GameLauncher</start-class>
 		<lwjgl.version>3.2.1</lwjgl.version>
 		<lwjgl.natives>natives-macos</lwjgl.natives>
 	</properties>

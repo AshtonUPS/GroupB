@@ -40,8 +40,8 @@ public class Box implements IGameComponent {
 		this.rotation = 0f;
 		this.scale = 1f;
 
-		this.ay = -0.05f;
-		this.vy = 0f;
+		this.ay = -0.1f;
+		this.vy = -2f;
 		this.vx = 0f;
 
 	}
@@ -58,11 +58,31 @@ public class Box implements IGameComponent {
 
 	}
 
+	float c = 0;
+	
 	@Override
 	public void update() {
+		
+		
 		x += vx;
+		
+		vy += ay;
+		
+		if(vy < 0) {
+			if(y <= -15 ) {
+				vy = -vy * 0.9f;
+			}
+		}
+		
+		
+		
+		
 		y += vy;
-		rotation = x+y;
+		
+		
+		
+		
+		//rotation = x+y;
 	}
 
 	@Override
