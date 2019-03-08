@@ -37,12 +37,13 @@ public class FileUtils {
 				buf.write(b);
 				result = bis.read();
 			}
+			System.out.println("Loaded File String: " + file);
 			return buf.toString();
 
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		System.out.println("Loaded File String: " + file);
+		System.out.println("Empty File String: " + file);
 		return "";
 	}
 
