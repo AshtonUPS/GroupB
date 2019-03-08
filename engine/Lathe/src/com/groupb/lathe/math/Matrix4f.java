@@ -41,6 +41,18 @@ public class Matrix4f {
 		return result;
 
 	}
+	
+	public static Matrix4f multiply(float fl) {
+		Matrix4f result = identity();
+
+		result.matrix[0 + 0 * 4] = fl;
+		result.matrix[1 + 1 * 4] = fl;
+		result.matrix[2 + 2 * 4] = fl;
+		result.matrix[3 + 3 * 4] = fl;
+
+		return result;
+
+	}
 
 	/**
 	 * Multiplies by the given matrix

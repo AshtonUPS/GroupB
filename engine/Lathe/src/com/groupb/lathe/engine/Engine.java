@@ -1,6 +1,10 @@
 package com.groupb.lathe.engine;
 
 import static org.lwjgl.glfw.GLFW.glfwGetTime;
+import static org.lwjgl.opengl.GL11.GL_TEXTURE_2D;
+import static org.lwjgl.opengl.GL11.glEnable;
+
+import com.groupb.lathe.graphics.Shader;
 
 /**
  * The engine class is the brains behind the operation. It does everything from
@@ -54,6 +58,8 @@ public class Engine implements Runnable {
 
 	private boolean init() {
 		window.init();
+		glEnable(GL_TEXTURE_2D);
+		Shader.loadAll();
 		gameLogic.init();
 		return true;
 	}

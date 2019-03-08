@@ -4,7 +4,7 @@ import com.groupb.lathe.graphics.Shader;
 import com.groupb.lathe.math.Matrix4f;
 import com.groupb.lathe.math.Vector3f;
 
-public class Camera {
+public class Camera_old {
 
 	private Vector3f position;
 	
@@ -12,7 +12,7 @@ public class Camera {
 	
 	private Shader shader;
 
-	public Camera(Shader s) {
+	public Camera_old(Shader s) {
 		position = new Vector3f();
 		cam = Matrix4f.identity();
 		shader = s;

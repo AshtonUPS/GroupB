@@ -21,7 +21,7 @@ public class SpriteRenderer extends GameComponent {
 	public void render() {
 		s.enable();
 		t.bind();
-		s.setUniformMat4f("model_matrix", Matrix4f.rotate(gameObject.getRotation()).multiply(Matrix4f.translate(gameObject.getPosition()).multiply(Matrix4f.scale(gameObject.getScale()))));
+		s.setUniformMat4f("model_matrix", gameObject.getMatrix());
 		m.render();
 		t.unbind();
 		s.disable();
