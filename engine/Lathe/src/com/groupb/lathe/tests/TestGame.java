@@ -15,15 +15,6 @@ public class TestGame implements IGameLogic {
 	@Override
 	public void init() {
 
-		/*Matrix4f pr_matrix = Matrix4f.orthographic(-100f, 100f, -100f * 9f / 16f, 100f * 9f / 16f, -1f, 1f);
-		Shader.BASIC.enable();
-		Shader.BASIC.setUniformMat4f("pr_matrix", pr_matrix);
-		Shader.BASIC.disable();
-
-		c = new Camera(Shader.BASIC);
-		
-		*/
-
 		g = new GameObject();
 		g2 = new GameObject();
 		camera = new GameObject();
