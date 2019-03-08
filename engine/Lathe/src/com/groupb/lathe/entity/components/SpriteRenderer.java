@@ -1,11 +1,15 @@
 package com.groupb.lathe.entity.components;
 
-import com.groupb.lathe.entity.GameObject;
 import com.groupb.lathe.graphics.Mesh;
 import com.groupb.lathe.graphics.Shader;
 import com.groupb.lathe.graphics.Texture;
-import com.groupb.lathe.math.Matrix4f;
 
+/**
+ * Component that handles rendering Sprites.
+ * 
+ * @author ashtonwalden
+ *
+ */
 public class SpriteRenderer extends GameComponent {
 
 	private Texture t;
@@ -25,6 +29,15 @@ public class SpriteRenderer extends GameComponent {
 		m.render();
 		t.unbind();
 		s.disable();
+	}
+
+	/**
+	 * Sets the component's texture
+	 * 
+	 * @param t New Texture
+	 */
+	public void setTexture(Texture t) {
+		this.t = t;
 	}
 
 }

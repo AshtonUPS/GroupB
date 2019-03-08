@@ -1,5 +1,11 @@
 package com.groupb.lathe.graphics;
 
+/**
+ * Handles creating rectangular vertex arrays.
+ * 
+ * @author ashtonwalden
+ *
+ */
 public class Mesh {
 
 	private VertexArray va;
