@@ -18,7 +18,7 @@ public class Engine implements Runnable {
 
 	private final Thread gameThread;
 
-	private IGameComponent gameLogic;
+	private IGameLogic gameLogic;
 
 	/**
 	 * Instantiates an engine.
@@ -28,7 +28,7 @@ public class Engine implements Runnable {
 	 * @param height    Height of the window
 	 * @param gameLogic The game logic
 	 */
-	public Engine(String name, int width, int height, IGameComponent gameLogic) {
+	public Engine(String name, int width, int height, IGameLogic gameLogic) {
 		gameThread = new Thread(this, "GAMELOOP");
 		this.gameLogic = gameLogic;
 		this.window = new Window(name, width, height);

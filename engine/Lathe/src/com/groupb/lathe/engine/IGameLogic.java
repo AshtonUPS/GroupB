@@ -6,7 +6,7 @@ package com.groupb.lathe.engine;
  * @author ashtonwalden
  *
  */
-public interface IGameComponent {
+public interface IGameLogic {
 
 	void init();
 
