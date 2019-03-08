@@ -1,8 +1,9 @@
 package com.groupb.lathe.util;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
+import java.io.BufferedInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 
 /**
  * Handles loading files
@@ -17,26 +18,32 @@ public class FileUtils {
 	}
 
 	/**
-	 * Loads a file into a string
+	 * Loads a file into a string.
+	 * 
+	 * Help from
+	 * https://stackoverflow.com/questions/309424/how-do-i-read-convert-an-inputstream-into-a-string-in-java
 	 * 
 	 * @param file Path to the file
 	 * @return The file's contents as a string
 	 */
 	public static String loadAsString(String file) {
-		String result = "";
 		try {
-			BufferedReader reader = new BufferedReader(new FileReader(file));
-			String line = "";
-
-			while ((line = reader.readLine()) != null) {
-				result += line + "\n";
+			InputStream istream = FileUtils.class.getClassLoader().getResourceAsStream(file);
+			BufferedInputStream bis = new BufferedInputStream(istream);
+			ByteArrayOutputStream buf = new ByteArrayOutputStream();
+			int result = bis.read();
+			while (result != -1) {
+				byte b = (byte) result;
+				buf.write(b);
+				result = bis.read();
 			}
+			return buf.toString();
 
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		System.out.println("Loaded File String: " + file);
-		return result;
+		return "";
 	}
 
 }
