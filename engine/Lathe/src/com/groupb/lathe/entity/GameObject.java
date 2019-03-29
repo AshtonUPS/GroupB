@@ -22,7 +22,7 @@ public class GameObject {
 
 	public static final List<GameObject> GAMEOBJECTS = new ArrayList<GameObject>(); // Global list of all gameobjects
 
-	private Vector3f position; // The objects position in the game world
+	protected Vector3f position; // The objects position in the game world
 
 	private List<GameComponent> components; // List of the instance's components
 

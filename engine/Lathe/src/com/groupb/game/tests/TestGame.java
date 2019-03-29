@@ -1,4 +1,4 @@
-package com.groupb.lathe.tests;
+package com.groupb.game.tests;
 
 import com.groupb.lathe.engine.IGameLogic;
 import com.groupb.lathe.engine.Window;
@@ -20,7 +20,6 @@ public class TestGame implements IGameLogic {
 		camera = new GameObject();
 		g.addComponent(new SpriteRenderer());
 		g2.addComponent(new SpriteRenderer());
-		g.addComponent(new BasicMovement());
 		CameraComponent c = new CameraComponent(Shader.BASIC);
 		camera.addComponent(c);
 		c.enable();
@@ -36,6 +35,7 @@ public class TestGame implements IGameLogic {
 	@Override
 	public void update() {
 		GameObject.updateAll();
+		
 	}
 
 	@Override

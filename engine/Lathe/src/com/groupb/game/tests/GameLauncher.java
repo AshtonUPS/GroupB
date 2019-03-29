@@ -1,4 +1,4 @@
-package com.groupb.lathe.tests;
+package com.groupb.game.tests;
 
 import com.groupb.lathe.engine.Engine;
 import com.groupb.lathe.engine.IGameLogic;
