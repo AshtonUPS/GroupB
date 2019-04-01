@@ -7,9 +7,9 @@ import com.groupb.lathe.entity.components.CameraComponent;
 import com.groupb.lathe.entity.components.SpriteRenderer;
 import com.groupb.lathe.graphics.Shader;
 
-public class TestGame implements IGameLogic { //Test
+public class TestGame implements IGameLogic { 
 	
-	GameObject g, g2;
+	GameObject g, g2, g3;
 	GameObject camera;
 
 	@Override
@@ -17,13 +17,16 @@ public class TestGame implements IGameLogic { //Test
 
 		g = new GameObject();
 		g2 = new GameObject();
+		//g3 = new GameObject();
 		camera = new GameObject();
 		g.addComponent(new SpriteRenderer());
 		g2.addComponent(new SpriteRenderer());
+		//g3.addComponent(new SpriteRenderer());
 		CameraComponent c = new CameraComponent(Shader.BASIC);
 		camera.addComponent(c);
 		c.enable();
-		g2.getPosition().x += 5f;
+		g2.getPosition().x += 8f;
+		//g3.getPosition().x += 16f;
 
 	}
 

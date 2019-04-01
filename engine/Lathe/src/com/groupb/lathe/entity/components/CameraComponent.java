@@ -49,7 +49,9 @@ public class CameraComponent extends GameComponent {
 	public void update() {
 		if (!enabled)
 			return;
-		gameObject.setScale(gameObject.getScale() + 0.001f);
+		//gameObject.setScale(gameObject.getScale() + 0.001f); // This zooms the camera in
+		//gameObject;
+		
 	}
 
 	@Override
