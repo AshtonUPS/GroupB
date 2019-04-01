@@ -7,7 +7,7 @@ import com.groupb.lathe.entity.components.CameraComponent;
 import com.groupb.lathe.entity.components.SpriteRenderer;
 import com.groupb.lathe.graphics.Shader;
 
-public class TestGame implements IGameLogic {
+public class TestGame implements IGameLogic { //Test
 	
 	GameObject g, g2;
 	GameObject camera;
