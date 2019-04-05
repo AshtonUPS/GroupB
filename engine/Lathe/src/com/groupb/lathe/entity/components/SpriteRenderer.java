@@ -39,5 +39,10 @@ public class SpriteRenderer extends GameComponent {
 	public void setTexture(Texture t) {
 		this.t = t;
 	}
+	
+	public void setResolution(int width, int height) {
+		float ratio = (float) height/width;
+		m = new Mesh(10, 10*ratio);
+	}
 
 }
