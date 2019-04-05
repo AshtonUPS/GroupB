@@ -18,93 +18,61 @@ import com.groupb.lathe.math.Vector3f;
  * @author ashtonwalden
  *
  */
-public class GameObject {
+public class GameObject implements IGameObject {
 
-	public static final List<GameObject> GAMEOBJECTS = new ArrayList<GameObject>(); // Global list of all gameobjects
+	protected Vector3f position; // The objects position in the game world (z isn't used)
+	protected Vector3f scale; //The objects scale (only x is used rn)
+	protected Vector3f size; //The objects width(x) and height(y)
 
-	private Vector3f position; // The objects position in the game world
-
-	private List<GameComponent> components; // List of the instance's components
-
-	private float rotation = 0f;
-	private float scale = 1f;
+	protected Vector3f rotation; //Z rotation.
 
 	public GameObject() {
 		position = new Vector3f();
-		components = new ArrayList<GameComponent>();
-		GAMEOBJECTS.add(this);
+		scale = new Vector3f(1, 1, 0);
+		size = new Vector3f(1,1,0);
+		rotation = new Vector3f();
+	}
+
+	public GameObject(Vector3f position, float width, float height) {
+		this.position = position;
+		scale = new Vector3f(1, 1, 0);
+		size = new Vector3f(width,height,0);
+		rotation = new Vector3f();
 	}
 
 	public void input(Window w) {
-		for (GameComponent gc : components) {
-			gc.input(w);
-		}
+		return;
 	}
 
 	public void update() {
-		for (GameComponent gc : components) {
-			gc.update();
-		}
+		return;
 	}
 
 	public void render() {
-		for (GameComponent gc : components) {
-			gc.render();
-		}
-	}
-
-	public float getRotation() {
-		return rotation;
-	}
-
-	public Vector3f getPosition() {
-		return position;
-	}
-
-	public float getScale() {
-		return scale;
-	}
-
-	public void setRotation(float rotation) {
-		this.rotation = rotation;
-	}
-
-	public void setScale(float f) {
-		scale = f;
-	}
-
-	public void addComponent(GameComponent c) {
-		components.add(c);
-		c.init(this);
+		return;
 	}
 
 	public Matrix4f getMatrix() {
-		return Matrix4f.rotate(getRotation())
-				.multiply(Matrix4f.translate(getPosition()).multiply(Matrix4f.scale(getScale())));
+		return Matrix4f.rotate(rotation.z).multiply(Matrix4f.translate(position).multiply(Matrix4f.scale(scale.x)));
 	}
 
-	public void destroy() {
-		GAMEOBJECTS.remove(this);
+	@Override
+	public String getStructure() {
+		return "Actor";
 	}
 
-	// Static methods
-
-	public static void dispatchInputs(Window w) {
-		for (GameObject go : GAMEOBJECTS) {
-			go.input(w);
-		}
+	@Override
+	public Vector3f getScale() {
+		return scale;
+	}
+	
+	@Override
+	public Vector3f getSize() {
+		return size;
 	}
 
-	public static void updateAll() {
-		for (GameObject go : GAMEOBJECTS) {
-			go.update();
-		}
+	@Override
+	public Vector3f getRotation() {
+		return rotation;
 	}
-
-	public static void renderAll() {
-		for (GameObject go : GAMEOBJECTS) {
-			go.render();
-		}
-	}
-
 }
