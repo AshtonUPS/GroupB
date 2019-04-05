@@ -37,7 +37,7 @@ public class Shader {
 	 * method.
 	 */
 	public static void loadAll() {
-		BASIC = new Shader("shaders/shader.vert", "shaders/shader.frag");
+		BASIC = new Shader("resources/shaders/shader.vert", "resources/shaders/shader.frag");
 	}
 
 	/**
