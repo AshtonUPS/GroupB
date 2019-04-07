@@ -63,6 +63,10 @@ public abstract class GameComponent implements IGameObject {
 		return gameObject.getMatrix();
 	}
 	
+	public Vector3f getPosition() {
+		return gameObject.getPosition();
+	}
+	
 	public String getStructure() {
 		return this.getClass().getSimpleName() + " -> " + gameObject.getStructure();
 	}

@@ -21,5 +21,7 @@ public interface IGameObject {
 	public Vector3f getSize();
 
 	public Vector3f getRotation();
+
+	public Vector3f getPosition();
 	
 }

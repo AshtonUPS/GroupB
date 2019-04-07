@@ -75,4 +75,9 @@ public class GameObject implements IGameObject {
 	public Vector3f getRotation() {
 		return rotation;
 	}
+
+	@Override
+	public Vector3f getPosition() {
+		return position;
+	}
 }
