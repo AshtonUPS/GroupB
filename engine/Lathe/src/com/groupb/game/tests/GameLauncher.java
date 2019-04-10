@@ -13,7 +13,7 @@ public class GameLauncher {
 		//new Engine("anothertest", 1280, 720, test2).start();;
 		
 		IGameLogic test3 = new TestGame3();
-		new Engine("anothertest", 1280, 720, test3).start();;
+		new Engine("Test3", 1280, 720, test3).start();;
 	}
 
 }
