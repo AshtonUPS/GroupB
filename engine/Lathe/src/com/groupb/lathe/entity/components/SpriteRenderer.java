@@ -16,10 +16,23 @@ public class SpriteRenderer extends GameComponent {
 	private Mesh m;
 	private Shader s = Shader.BASIC;
 
+	/* Original code
+	public SpriteRenderer() {
+		t = Texture.getByPath("resources/default.png");
+		m = new Mesh(10, 10);	//mesh changed the width and height
+	}
+	*/
+	
+	public SpriteRenderer(int width, int height) {
+		t = Texture.getByPath("resources/default.png");
+		m = new Mesh(width, height);	//mesh changed the width and height
+	}
+	
 	public SpriteRenderer() {
 		t = Texture.getByPath("resources/default.png");
 		m = new Mesh(10, 10);
 	}
+	
 
 	@Override
 	public void render() {

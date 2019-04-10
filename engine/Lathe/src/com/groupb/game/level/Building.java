@@ -6,7 +6,7 @@ import com.groupb.lathe.entity.components.ColorRenderer;
 public class Building extends GameObject{
 	
 	private int width, height;
-	private final float speed = 0.1f;
+	private final float speed = 0.5f;
 	
 	/*
 	public Building(int x, int width, int height) {
