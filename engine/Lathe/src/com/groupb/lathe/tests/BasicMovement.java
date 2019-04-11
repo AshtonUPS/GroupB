@@ -5,7 +5,7 @@ import static org.lwjgl.glfw.GLFW.GLFW_KEY_D;
 import static org.lwjgl.glfw.GLFW.GLFW_KEY_E;
 import static org.lwjgl.glfw.GLFW.GLFW_KEY_Q;
 import static org.lwjgl.glfw.GLFW.GLFW_KEY_S;
-import static org.lwjgl.glfw.GLFW.GLFW_KEY_W;
+import static org.lwjgl.glfw.GLFW.GLFW_KEY_SPACE;
 
 import com.groupb.lathe.engine.Window;
 import com.groupb.lathe.entity.components.GameComponent;
@@ -13,38 +13,96 @@ import com.groupb.lathe.math.Vector3f;
 
 public class BasicMovement extends GameComponent {
 
-	private float vx, vy, rotation;
-	private float speed = 2f;
-
+	
+	private int velocity = 8;
+	private int cooldown = 40;
+	private int cooldown_timer = 0;
+	private int ground_level = 0;
+	private float rotation = 0f;
+	
+	private boolean isJumping = false;
+	private boolean inCoolDown = false;
+	private boolean keyresponded = false;
+	
+	/*
+	 * Set the current ground level to a particular value
+	 */
+	public void setGndLvl(int gl) {
+		this.ground_level = gl;
+	}
+	/*
+	 * Return the current velocity
+	 */
+	public int getVelocity()	{
+		return this.velocity;
+	}
+	
+	public boolean keyReponse()	{
+		return keyresponded;
+	}
+	/*
+	 * Return the status of isJumping
+	 */
+	public boolean returnIsJumping()	{
+		return this.isJumping;
+	}
+	/*
+	 * Return the status of inCoolDown
+	 */
+	public boolean returnInCoolDown()	{
+		return this.inCoolDown;
+	}
+	
+	public void simulateKeyPress()	{
+		if(inCoolDown == false)	{
+			//jump if not in cool down
+			isJumping = true;
+			keyresponded = true;
+		}
+		else	{
+			keyresponded = false;
+		}
+	}
+	
+	
 	public void input(Window w) {
-		vx = 0f;
-		vy = 0f;
-		
-		if (w.isKeyPressed(GLFW_KEY_A)) {
-			vx -= speed;
-		}
-		if (w.isKeyPressed(GLFW_KEY_D)) {
-			vx += speed;
-		}
-		if (w.isKeyPressed(GLFW_KEY_W)) {
-			vy += speed;
-		}
-		if (w.isKeyPressed(GLFW_KEY_S)) {
-			vy -= speed;
-		}
-		if (w.isKeyPressed(GLFW_KEY_E)) {
-			rotation -= 1f;
-		}
-		if (w.isKeyPressed(GLFW_KEY_Q)) {
-			rotation += 1f;
+		if (w.isKeyPressed(GLFW_KEY_SPACE)) {
+			//assert isJumping to be true
+			
+			if(inCoolDown == false)	{
+				//jump if not in cool down
+				isJumping = true;
+			}
 		}
 	}
 
 	public void update() {
 		Vector3f pos = gameObject.getPosition();
-		pos.x += vx;
-		pos.y += vy;
-		gameObject.setRotation(rotation);
-	}
+		
+		if(isJumping == true) {
+			inCoolDown = true;
+			MovementController mc = new MovementController(velocity, pos.y);
+			Command jump = new JumpCommand(mc);
+			jump.execute();
+			
+			velocity = mc.velocity;
+			pos.y = mc.pos_y;
+			gameObject.setRotation(rotation -= 5f);
+		}
+		
+		//check if cool down is active and perform accordingly
+		if(inCoolDown == true) {
+			cooldown_timer ++;
+			if(cooldown_timer == cooldown)	{
+				cooldown_timer = 0;
+				inCoolDown = false;
+			}
+		}
 
+		if(pos.y < ground_level)	{
+			pos.y = ground_level;
+			velocity = 8;
+			isJumping = false;
+		}
+	}
 }
