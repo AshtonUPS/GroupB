@@ -22,7 +22,7 @@ public class GameLogic implements IGameLogic {
 		c.enable();
 
 		obj = new GameObject();
-		SpriteRenderer sr = new SpriteRenderer(obj, Texture.getByPath("resources/Block_Pack/PNG/Retina/tileDirt.png"));
+		SpriteRenderer sr = new SpriteRenderer(obj, Texture.getByPath("resources/default.png"));
 		sr.setResolution(128, 200);
 		new DummyComponent(obj);
 
