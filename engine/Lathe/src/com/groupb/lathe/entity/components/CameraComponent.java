@@ -1,5 +1,6 @@
 package com.groupb.lathe.entity.components;
 
+import com.groupb.lathe.entity.GameObject;
 import com.groupb.lathe.graphics.Shader;
 import com.groupb.lathe.math.Matrix4f;
 
@@ -22,7 +23,8 @@ public class CameraComponent extends GameComponent {
 	 * 
 	 * @param s Shader for the camera
 	 */
-	public CameraComponent(Shader s) {
+	public CameraComponent(GameObject parent, Shader s) {
+		super(parent);
 		shader = s;
 		pr_matrix = Matrix4f.orthographic(-100f, 100f, -100f * 9f / 16f, 100f * 9f / 16f, -1f, 1f);
 	}
@@ -34,7 +36,7 @@ public class CameraComponent extends GameComponent {
 		enabled = true;
 		shader.enable();
 		shader.setUniformMat4f("pr_matrix", pr_matrix);
-		shader.setUniformMat4f("vw_matrix", gameObject.getMatrix());
+		shader.setUniformMat4f("vw_matrix", child.getMatrix());
 		shader.disable();
 	}
 
@@ -47,17 +49,19 @@ public class CameraComponent extends GameComponent {
 
 	@Override
 	public void update() {
+		super.update();
 		if (!enabled)
 			return;
-		gameObject.setScale(gameObject.getScale() + 0.001f);
+		child.getScale().x += 0.01f;
 	}
 
 	@Override
 	public void render() {
+		super.render();
 		if (!enabled)
 			return;
 		shader.enable();
-		shader.setUniformMat4f("vw_matrix", gameObject.getMatrix());
+		shader.setUniformMat4f("vw_matrix", child.getMatrix());
 		shader.disable();
 	}
 }

@@ -2,6 +2,8 @@ package com.groupb.lathe.entity.components;
 
 import com.groupb.lathe.engine.Window;
 import com.groupb.lathe.entity.GameObject;
+import com.groupb.lathe.math.Matrix4f;
+import com.groupb.lathe.math.Vector3f;
 
 /**
  * Template for creating a GameComponent. GameComponents are attached to
@@ -12,15 +14,18 @@ import com.groupb.lathe.entity.GameObject;
  */
 public abstract class GameComponent {
 
-	protected GameObject gameObject; // Parent gameObject
+	protected GameComponent child; // Parent gameObject
+	
+	public GameComponent(GameObject parent) {
+		parent.addComponent(this);
+	}
 
-	/**
-	 * Initialize the game component with a Game Object
-	 * 
-	 * @param g Parent GameObject
-	 */
-	public void init(GameObject g) {
-		this.gameObject = g;
+	public boolean setChild(GameComponent newChild) {
+		if (child == null) {
+			child = newChild;
+			return true;
+		}
+		return false;
 	}
 
 	/**
@@ -29,6 +34,7 @@ public abstract class GameComponent {
 	 * @param w
 	 */
 	public void input(Window w) {
+		child.input(w);
 		return;
 	}
 
@@ -36,6 +42,7 @@ public abstract class GameComponent {
 	 * Handle updates
 	 */
 	public void update() {
+		child.update();
 		return;
 	}
 
@@ -43,7 +50,32 @@ public abstract class GameComponent {
 	 * Handle rendering
 	 */
 	public void render() {
+		child.render();
 		return;
+	}
+
+	public Vector3f getRotation() {
+		return child.getRotation();
+	}
+
+	public Vector3f getPosition() {
+		return child.getPosition();
+	}
+
+	public Vector3f getScale() {
+		return child.getScale();
+	}
+
+	public Vector3f getSize() {
+		return child.getSize();
+	}
+
+	public Matrix4f getMatrix() {
+		return child.getMatrix();
+	}
+
+	public String getStructure() {
+		return this.getClass().getSimpleName() + " -> " + child.getStructure();
 	}
 
 }
