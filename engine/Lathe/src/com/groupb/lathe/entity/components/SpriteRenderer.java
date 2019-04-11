@@ -1,6 +1,6 @@
 package com.groupb.lathe.entity.components;
 
-import com.groupb.lathe.entity.IGameObject;
+import com.groupb.lathe.entity.GameObject;
 import com.groupb.lathe.graphics.Mesh;
 import com.groupb.lathe.graphics.Shader;
 import com.groupb.lathe.graphics.Texture;
@@ -18,10 +18,10 @@ public class SpriteRenderer extends GameComponent {
 	private Mesh m;
 	private Shader s = Shader.BASIC;
 
-	public SpriteRenderer(IGameObject gameObject, Texture texture) {
-		super(gameObject);
+	public SpriteRenderer(GameObject parent,Texture texture) {
+		super(parent);
 		t = texture;
-		Vector3f size = gameObject.getSize();
+		Vector3f size = child.getSize();
 		m = new Mesh(size.x, size.y);
 	}
 
@@ -30,7 +30,7 @@ public class SpriteRenderer extends GameComponent {
 		super.render();
 		s.enable();
 		t.bind();
-		s.setUniformMat4f("model_matrix", gameObject.getMatrix());
+		s.setUniformMat4f("model_matrix", child.getMatrix());
 		m.render();
 		t.unbind();
 		s.disable();
@@ -47,7 +47,7 @@ public class SpriteRenderer extends GameComponent {
 	
 	public void setResolution(int width, int height) {
 		float ratio = (float) height/width;
-		Vector3f size = gameObject.getSize();
+		Vector3f size = child.getSize();
 		m = new Mesh(size.x, size.x*ratio);
 	}
 }

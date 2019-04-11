@@ -2,8 +2,8 @@ package com.groupb.experiments;
 
 import com.groupb.lathe.engine.IGameLogic;
 import com.groupb.lathe.engine.Window;
+import com.groupb.lathe.entity.Camera;
 import com.groupb.lathe.entity.GameObject;
-import com.groupb.lathe.entity.IGameObject;
 import com.groupb.lathe.entity.components.CameraComponent;
 import com.groupb.lathe.entity.components.DummyComponent;
 import com.groupb.lathe.entity.components.SpriteRenderer;
@@ -12,39 +12,38 @@ import com.groupb.lathe.graphics.Texture;
 
 public class GameLogic implements IGameLogic {
 
-	IGameObject camera, obj;
+	GameObject obj;
+	Camera c;
 
 	@Override
 	public void init() {
 		// Setup Camera
-		camera = new CameraComponent(new GameObject(), Shader.BASIC);
+		c = new Camera();
+		c.enable();
 
-		((CameraComponent) camera).enable();
-
-		GameObject g = new GameObject();
-		SpriteRenderer sr = new SpriteRenderer(g, Texture.getByPath("resources/Block_Pack/PNG/Retina/tileDirt.png"));
+		obj = new GameObject();
+		SpriteRenderer sr = new SpriteRenderer(obj, Texture.getByPath("resources/Block_Pack/PNG/Retina/tileDirt.png"));
 		sr.setResolution(128, 200);
+		new DummyComponent(obj);
 
-		obj = new DummyComponent(sr);
-
+		System.out.println(obj);
+		System.out.println(c);
+		
 	}
 
 	@Override
 	public void input(Window window) {
-		camera.input(window);
-		obj.input(window);
+		GameObject.dispatchInputs(window);
 	}
 
 	@Override
 	public void update() {
-		camera.update();
-		obj.update();
+		GameObject.updateAll();
 	}
 
 	@Override
 	public void render() {
-		camera.render();
-		obj.render();
+		GameObject.renderAll();
 	}
 
 	@Override

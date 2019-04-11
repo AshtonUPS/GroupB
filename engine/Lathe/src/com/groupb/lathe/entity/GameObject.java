@@ -1,12 +1,10 @@
 package com.groupb.lathe.entity;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import com.groupb.lathe.engine.Window;
+import com.groupb.lathe.entity.components.BaseComponent;
 import com.groupb.lathe.entity.components.GameComponent;
-import com.groupb.lathe.entity.components.SpriteRenderer;
-import com.groupb.lathe.graphics.Shader;
 import com.groupb.lathe.math.Matrix4f;
 import com.groupb.lathe.math.Vector3f;
 
@@ -18,66 +16,84 @@ import com.groupb.lathe.math.Vector3f;
  * @author ashtonwalden
  *
  */
-public class GameObject implements IGameObject {
+public class GameObject {
 
-	protected Vector3f position; // The objects position in the game world (z isn't used)
-	protected Vector3f scale; //The objects scale (only x is used rn)
-	protected Vector3f size; //The objects width(x) and height(y)
+	private static final ArrayList<GameObject> gameObjects = new ArrayList<GameObject>();
 
-	protected Vector3f rotation; //Z rotation.
-
-	public GameObject() {
-		position = new Vector3f();
-		scale = new Vector3f(1, 1, 0);
-		size = new Vector3f(1,1,0);
-		rotation = new Vector3f();
+	public static void dispatchInputs(Window w) {
+		for (GameObject go : gameObjects) {
+			go.input(w);
+		}
 	}
 
-	public GameObject(Vector3f position, float width, float height) {
-		this.position = position;
-		scale = new Vector3f(1, 1, 0);
-		size = new Vector3f(width,height,0);
-		rotation = new Vector3f();
+	public static void updateAll() {
+		for (GameObject go : gameObjects) {
+			go.update();
+		}
+	}
+
+	public static void renderAll() {
+		for (GameObject go : gameObjects) {
+			go.render();
+		}
+	}
+
+	protected GameComponent component;
+
+	public GameObject() {
+		new BaseComponent(this);
+		gameObjects.add(this);
 	}
 
 	public void input(Window w) {
+		component.input(w);
 		return;
 	}
 
 	public void update() {
+		component.update();
 		return;
 	}
 
 	public void render() {
+		component.render();
 		return;
 	}
 
-	public Matrix4f getMatrix() {
-		return Matrix4f.rotate(rotation.z).multiply(Matrix4f.translate(position).multiply(Matrix4f.scale(scale.x)));
+	public boolean addComponent(GameComponent newComponent) {
+		boolean success = newComponent.setChild(component);
+		if (success) {
+			component = newComponent;
+			return true;
+		}
+
+		return false;
+
 	}
 
-	@Override
-	public String getStructure() {
-		return "Actor";
-	}
-
-	@Override
-	public Vector3f getScale() {
-		return scale;
-	}
-	
-	@Override
-	public Vector3f getSize() {
-		return size;
-	}
-
-	@Override
 	public Vector3f getRotation() {
-		return rotation;
+		return component.getRotation();
+	}
+
+	public Vector3f getPosition() {
+		return component.getPosition();
+	}
+
+	public Vector3f getScale() {
+		return component.getScale();
+	}
+
+	public Matrix4f getMatrix() {
+		return component.getMatrix();
+	}
+
+	public String getStructure() {
+		return component.getStructure();
 	}
 
 	@Override
-	public Vector3f getPosition() {
-		return position;
+	public String toString() {
+		return this.getClass().getSimpleName() + ": " + getStructure();
 	}
+
 }

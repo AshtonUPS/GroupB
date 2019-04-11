@@ -1,7 +1,7 @@
 package com.groupb.lathe.entity.components;
 
 import com.groupb.lathe.engine.Window;
-import com.groupb.lathe.entity.IGameObject;
+import com.groupb.lathe.entity.GameObject;
 import com.groupb.lathe.math.Matrix4f;
 import com.groupb.lathe.math.Vector3f;
 
@@ -12,22 +12,29 @@ import com.groupb.lathe.math.Vector3f;
  * @author ashtonwalden
  *
  */
-public abstract class GameComponent implements IGameObject {
+public abstract class GameComponent {
 
-	protected IGameObject gameObject; // Parent gameObject
+	protected GameComponent child; // Parent gameObject
 	
-	
-	public GameComponent(IGameObject gameObject) {
-		this.gameObject = gameObject;
+	public GameComponent(GameObject parent) {
+		parent.addComponent(this);
 	}
-	
+
+	public boolean setChild(GameComponent newChild) {
+		if (child == null) {
+			child = newChild;
+			return true;
+		}
+		return false;
+	}
+
 	/**
 	 * Handle input
 	 * 
 	 * @param w
 	 */
 	public void input(Window w) {
-		gameObject.input(w);
+		child.input(w);
 		return;
 	}
 
@@ -35,7 +42,7 @@ public abstract class GameComponent implements IGameObject {
 	 * Handle updates
 	 */
 	public void update() {
-		gameObject.update();
+		child.update();
 		return;
 	}
 
@@ -43,32 +50,32 @@ public abstract class GameComponent implements IGameObject {
 	 * Handle rendering
 	 */
 	public void render() {
-		gameObject.render();
+		child.render();
 		return;
 	}
-	
-	public Vector3f getScale() {
-		return gameObject.getScale();
-	}
-	
-	public Vector3f getSize() {
-		return gameObject.getSize();
-	}
-	
+
 	public Vector3f getRotation() {
-		return gameObject.getRotation();
+		return child.getRotation();
 	}
-	
-	public Matrix4f getMatrix() {
-		return gameObject.getMatrix();
-	}
-	
+
 	public Vector3f getPosition() {
-		return gameObject.getPosition();
+		return child.getPosition();
 	}
-	
+
+	public Vector3f getScale() {
+		return child.getScale();
+	}
+
+	public Vector3f getSize() {
+		return child.getSize();
+	}
+
+	public Matrix4f getMatrix() {
+		return child.getMatrix();
+	}
+
 	public String getStructure() {
-		return this.getClass().getSimpleName() + " -> " + gameObject.getStructure();
+		return this.getClass().getSimpleName() + " -> " + child.getStructure();
 	}
 
 }

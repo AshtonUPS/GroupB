@@ -7,7 +7,7 @@ public class Launcher {
 
 	public static void main(String[] args) {
 		IGameLogic blocky = new GameLogic();
-		new Engine("Blocky", 1280, 720, blocky).start();;
+		new Engine("Blocky", 1280, 720, blocky).start();
 	}
 
 }

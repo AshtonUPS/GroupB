@@ -6,42 +6,42 @@ import static org.lwjgl.glfw.GLFW.GLFW_KEY_S;
 import static org.lwjgl.glfw.GLFW.GLFW_KEY_W;
 
 import com.groupb.lathe.engine.Window;
-import com.groupb.lathe.entity.IGameObject;
+import com.groupb.lathe.entity.GameObject;
 import com.groupb.lathe.math.Vector3f;
 
 public class DummyComponent extends GameComponent {
-	
+
+	public DummyComponent(GameObject parent) {
+		super(parent);
+	}
+
 	private int vx, vy;
 
-	public DummyComponent(IGameObject gameObject) {
-		super(gameObject);
-	}
-	
 	@Override
 	public void input(Window w) {
 		vx = 0;
 		vy = 0;
-		if(w.isKeyPressed(GLFW_KEY_W)) {
+		if (w.isKeyPressed(GLFW_KEY_W)) {
 			vy += 1f;
 		}
-		if(w.isKeyPressed(GLFW_KEY_S)) {
+		if (w.isKeyPressed(GLFW_KEY_S)) {
 			vy -= 1f;
 		}
-		if(w.isKeyPressed(GLFW_KEY_A)) {
+		if (w.isKeyPressed(GLFW_KEY_A)) {
 			vx -= 1f;
 		}
-		if(w.isKeyPressed(GLFW_KEY_D)) {
+		if (w.isKeyPressed(GLFW_KEY_D)) {
 			vx += 1f;
 		}
 	}
-	
+
 	@Override
 	public void update() {
 		super.update();
-		Vector3f pos = gameObject.getPosition();
+		Vector3f pos = child.getPosition();
 		pos.x += vx;
 		pos.y += vy;
-		
+
 		return;
 	}
 
