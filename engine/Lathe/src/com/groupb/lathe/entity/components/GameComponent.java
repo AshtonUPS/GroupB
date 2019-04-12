@@ -77,5 +77,4 @@ public abstract class GameComponent {
 	public String getStructure() {
 		return this.getClass().getSimpleName() + " -> " + child.getStructure();
 	}
-
 }

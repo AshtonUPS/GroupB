@@ -90,6 +90,12 @@ public class GameObject {
 	public String getStructure() {
 		return component.getStructure();
 	}
+	
+	public void destroy() {
+		gameObjects.remove(this);
+		component = null;
+		new BaseComponent(this);
+	}
 
 	@Override
 	public String toString() {
