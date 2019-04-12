@@ -8,12 +8,17 @@ import static org.lwjgl.glfw.GLFW.GLFW_KEY_S;
 import static org.lwjgl.glfw.GLFW.GLFW_KEY_SPACE;
 
 import com.groupb.lathe.engine.Window;
+import com.groupb.lathe.entity.GameObject;
 import com.groupb.lathe.entity.components.GameComponent;
 import com.groupb.lathe.math.Vector3f;
 
 public class BasicMovement extends GameComponent {
 
 	
+	public BasicMovement(GameObject parent) {
+		super(parent);
+	}
+
 	private int velocity = 8;
 	private int cooldown = 40;
 	private int cooldown_timer = 0;
@@ -77,7 +82,8 @@ public class BasicMovement extends GameComponent {
 	}
 
 	public void update() {
-		Vector3f pos = gameObject.getPosition();
+		Vector3f pos = getPosition();
+		Vector3f rotation = getRotation();
 		
 		if(isJumping == true) {
 			inCoolDown = true;
@@ -87,7 +93,8 @@ public class BasicMovement extends GameComponent {
 			
 			velocity = mc.velocity;
 			pos.y = mc.pos_y;
-			gameObject.setRotation(rotation -= 5f);
+			rotation.z -= 5f;
+			//setRotation(rotation -= 5f);
 		}
 		
 		//check if cool down is active and perform accordingly
