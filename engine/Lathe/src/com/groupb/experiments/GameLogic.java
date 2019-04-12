@@ -4,11 +4,9 @@ import com.groupb.lathe.engine.IGameLogic;
 import com.groupb.lathe.engine.Window;
 import com.groupb.lathe.entity.Camera;
 import com.groupb.lathe.entity.GameObject;
-import com.groupb.lathe.entity.components.CameraComponent;
-import com.groupb.lathe.entity.components.DummyComponent;
 import com.groupb.lathe.entity.components.SpriteRenderer;
-import com.groupb.lathe.graphics.Shader;
 import com.groupb.lathe.graphics.Texture;
+import com.groupb.lathe.tests.BasicMovement;
 
 public class GameLogic implements IGameLogic {
 
@@ -23,8 +21,8 @@ public class GameLogic implements IGameLogic {
 
 		obj = new GameObject();
 		SpriteRenderer sr = new SpriteRenderer(obj, Texture.getByPath("resources/default.png"));
-		sr.setResolution(128, 200);
-		new DummyComponent(obj);
+		
+		new BasicMovement(obj);
 
 		System.out.println(obj);
 		System.out.println(c);
