@@ -1,12 +1,12 @@
 package com.groupb.experiments;
 
+import com.groupb.game.player.BasicMovement;
 import com.groupb.lathe.engine.IGameLogic;
 import com.groupb.lathe.engine.Window;
 import com.groupb.lathe.entity.Camera;
 import com.groupb.lathe.entity.GameObject;
 import com.groupb.lathe.entity.components.SpriteRenderer;
 import com.groupb.lathe.graphics.Texture;
-import com.groupb.lathe.tests.BasicMovement;
 
 public class GameLogic implements IGameLogic {
 

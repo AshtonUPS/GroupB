@@ -1,10 +1,11 @@
-package com.groupb.lathe.tests;
+package com.groupb.game.tests;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
+import com.groupb.game.player.BasicMovement;
 import com.groupb.lathe.entity.GameObject;
 
 class BasicMovementTest {

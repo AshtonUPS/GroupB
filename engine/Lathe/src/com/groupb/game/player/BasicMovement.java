@@ -1,4 +1,4 @@
-package com.groupb.lathe.tests;
+package com.groupb.game.player;
 
 import static org.lwjgl.glfw.GLFW.GLFW_KEY_A;
 import static org.lwjgl.glfw.GLFW.GLFW_KEY_D;

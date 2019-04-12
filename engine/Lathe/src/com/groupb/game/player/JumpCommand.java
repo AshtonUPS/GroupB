@@ -1,4 +1,4 @@
-package com.groupb.lathe.tests;
+package com.groupb.game.player;
 
 import com.groupb.lathe.math.Vector3f;
 

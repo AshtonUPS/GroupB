@@ -1,4 +1,4 @@
-package com.groupb.lathe.tests;
+package com.groupb.game.player;
 
 public class MovementController {
 	
