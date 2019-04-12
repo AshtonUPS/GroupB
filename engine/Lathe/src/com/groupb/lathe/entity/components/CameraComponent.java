@@ -47,13 +47,6 @@ public class CameraComponent extends GameComponent {
 		enabled = false;
 	}
 
-	@Override
-	public void update() {
-		super.update();
-		if (!enabled)
-			return;
-		child.getScale().x += 0.01f;
-	}
 
 	@Override
 	public void render() {

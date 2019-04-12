@@ -21,7 +21,7 @@ public class BaseComponent extends GameComponent {
 	}
 
 	public BaseComponent(GameObject parent) {
-		this(parent, new Vector3f(), 1f, 1f);
+		this(parent, new Vector3f(), 10f, 10f);
 	}
 
 	@Override
