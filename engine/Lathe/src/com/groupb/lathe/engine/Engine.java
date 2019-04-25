@@ -56,14 +56,14 @@ public class Engine implements Runnable {
 		gameLoop();
 	}
 
-	private boolean init() {
+	protected boolean init() {
 		window.init();
 		Shader.loadAll();
 		gameLogic.init();
 		return true;
 	}
 
-	private void gameLoop() {
+	protected void gameLoop() {
 
 		double lastTime = glfwGetTime();
 		double now;
@@ -125,21 +125,21 @@ public class Engine implements Runnable {
 	/**
 	 * Called as often as possible
 	 */
-	private void input() {
+	protected void input() {
 		gameLogic.input(window);
 	}
 
 	/**
 	 * Guaranteed to be called 60 times per second
 	 */
-	private void update() {
+	protected void update() {
 		gameLogic.update();
 	}
 
 	/**
 	 * Attempts to call 60 times per second
 	 */
-	private void render() {
+	protected void render() {
 		window.clear();
 		gameLogic.render();
 	}
