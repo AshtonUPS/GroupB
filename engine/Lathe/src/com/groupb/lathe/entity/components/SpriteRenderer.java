@@ -24,6 +24,7 @@ public class SpriteRenderer extends GameComponent {
 		Vector3f size = child.getSize();
 		m = new Mesh(size.x, size.y);
 	}
+	
 
 	@Override
 	public void render() {
