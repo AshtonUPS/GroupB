@@ -26,7 +26,7 @@ public class Level {
 		linkedBuildings = new LinkedList<Building>();
 
 		for (int i = 0; i < lengthOfGround; i++) {
-			linkedBuildings.add(new Building(-52, 0 + (i * 10) - (95), 4, 4));// add buildings
+			linkedBuildings.add(new Building(-10, 0 + (i * 10) - (95), 4, 4));// add buildings
 		}
 		for (Building building : linkedBuildings) {
 			new SpriteRenderer(building, Texture.getByPath("resources/default.png"));				//SHOW ME		
