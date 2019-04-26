@@ -30,6 +30,8 @@ public class TestGame3 implements IGameLogic {
 		
 		new BasicMovement(obj);
 		
+		obj.getPosition().x = -40;
+		
 		
 	}
 

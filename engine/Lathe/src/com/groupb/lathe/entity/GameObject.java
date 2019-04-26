@@ -91,6 +91,9 @@ public class GameObject {
 		return component.getStructure();
 	}
 	
+	public void destroy() {
+		GameObject.gameObjects.remove(this);
+	}
 
 	@Override
 	public String toString() {

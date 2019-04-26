@@ -50,9 +50,9 @@ public class Level {
 		}
 		//Is this if statement too slow? Would it be easier to just check the size of the linked list?
 		
-		if(linkedBuildings.peek() != null && linkedBuildings.peek().getPosition().x <= leftEndOfScreen ) {
+		if(linkedBuildings.peek() != null && linkedBuildings.peek().getPosition().x <= leftEndOfScreen - 10 ) {
 			///linkedBuildings.removeFirst();	// clean up
-			//linkedBuildings.poll().destroy();
+			linkedBuildings.poll().destroy();
 		}
 		
 		//System.out.println(linkedBuildings.size());
