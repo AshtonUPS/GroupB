@@ -90,6 +90,7 @@ public class GameObject {
 	public String getStructure() {
 		return component.getStructure();
 	}
+	
 
 	@Override
 	public String toString() {

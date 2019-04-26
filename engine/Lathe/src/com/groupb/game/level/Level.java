@@ -4,6 +4,7 @@ package com.groupb.game.level;
 import java.util.LinkedList;
 
 import com.groupb.lathe.entity.components.SpriteRenderer;
+import com.groupb.lathe.graphics.Texture;
 
 /**
  * 
@@ -28,7 +29,7 @@ public class Level {
 			linkedBuildings.add(new Building(-52, 0 + (i * 10) - (95), 4, 4));// add buildings
 		}
 		for (Building building : linkedBuildings) {
-			building.addComponent(new SpriteRenderer());				//SHOW ME		
+			new SpriteRenderer(building, Texture.getByPath("resources/default.png"));				//SHOW ME		
 		}
 	}
 
@@ -44,15 +45,14 @@ public class Level {
 			linkedBuildings.add(new Building((int) (linkedBuildings.get(linkedBuildings.size() - 1).getPosition().y),
 					(int) (linkedBuildings.get(linkedBuildings.size() - 1).getPosition().x) + 10, 4, 4)); // add one Building to linked list
 			//remove +5 in position() if no hill
-			
-			linkedBuildings.getLast().addComponent(new SpriteRenderer());	// make it visible
+			new SpriteRenderer(linkedBuildings.getLast(), Texture.getByPath("resources/default.png"));	// make it visible
 			
 		}
 		//Is this if statement too slow? Would it be easier to just check the size of the linked list?
 		
 		if(linkedBuildings.peek() != null && linkedBuildings.peek().getPosition().x <= leftEndOfScreen ) {
 			///linkedBuildings.removeFirst();	// clean up
-			linkedBuildings.poll().destroy();
+			//linkedBuildings.poll().destroy();
 		}
 		
 		//System.out.println(linkedBuildings.size());
