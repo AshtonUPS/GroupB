@@ -81,7 +81,7 @@ public class Window {
 		glEnable(GL_BLEND);
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-		// glClearColor(1f, 0f, 0f, 0f);
+		glClearColor(1f, 1f, 1f, 0f);
 
 	}
 
