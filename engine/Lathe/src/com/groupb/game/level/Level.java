@@ -15,7 +15,7 @@ public class Level {
 
 	// ArrayList<Building> buildings;
 	LinkedList<Building> linkedBuildings;
-	Building b;
+	//Building b;
 	
 	//change this, getWidth of screen find a way based on blocks
 	int lengthOfGround = 21;
@@ -35,20 +35,14 @@ public class Level {
 
 
 	public void update() {
-		//There is a problem.. if the user clicks the last block, thus taking away that block, The up
-		///date method will just replace that block. How will I fix this then?
-		//Should I create another method or should I keep adding blocks at the same place e.g add them
-		// at rightEndOfScreen - 10.
-		////Therefore not dependent on the last block... but that would make it less dynamic...
 		
 		if(linkedBuildings.peekLast().getPosition().x <= rightEndOfScreen) {
 			linkedBuildings.add(new Building((int) (linkedBuildings.get(linkedBuildings.size() - 1).getPosition().y),
 					(int) (linkedBuildings.get(linkedBuildings.size() - 1).getPosition().x) + 10, 4, 4)); // add one Building to linked list
-			//remove +5 in position() if no hill
+
 			new SpriteRenderer(linkedBuildings.getLast(), Texture.getByPath("resources/default.png"));	// make it visible
 			
 		}
-		//Is this if statement too slow? Would it be easier to just check the size of the linked list?
 		
 		if(linkedBuildings.peek() != null && linkedBuildings.peek().getPosition().x <= leftEndOfScreen ) {
 			///linkedBuildings.removeFirst();	// clean up
@@ -62,9 +56,7 @@ public class Level {
 	/**
 	 * 
 	 */
-	protected void obstacles() {
-		
-	}
+
 	
 	/**
 	 * 

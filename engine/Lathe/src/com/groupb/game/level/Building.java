@@ -9,15 +9,6 @@ public class Building extends GameObject{
 	private final float speed = 0.5f;
 	private Vector3f position;
 	
-	/*
-	public Building(int x, int width, int height) {
-		super();
-		position.x = x;
-		this.width = width;
-		this.height = height;
-		addComponent(new ColorRenderer(255,255,255, width, height));
-	}
-	*/
 	
 	public Building(int y, int x, int width, int height) {	//Added y
 		super();
