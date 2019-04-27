@@ -18,9 +18,9 @@ public class TestGame3 implements IGameLogic {
 	
 	
 	@Override
-	public void init() {	// Where you add the game components
+	public void init() {
 		
-		l =  new Level(); // creates the ground, No obstacles
+		l =  new Level();
 
 		c = new Camera();
 		c.enable();
