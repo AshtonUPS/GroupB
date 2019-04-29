@@ -103,7 +103,7 @@ public class Level {
 	}
 	
 	private int time_generate() {
-		int random_time = 30 + rand.nextInt(100); //change the number in nextInt to increase or decrease the possible amount of time between obstacles
+		int random_time = 40 + rand.nextInt(100); //change the number in nextInt to increase or decrease the possible amount of time between obstacles
 		return random_time;
 		//Cool down?
 	}
