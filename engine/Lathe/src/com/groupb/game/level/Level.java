@@ -47,7 +47,8 @@ public class Level {
 		//GENERATE SPIKES
 				if (time == 0) {
 					spike_placed = true;
-					generate_spikes();
+					generate_spikes(rand.nextBoolean());
+					
 					time++;
 				} 
 				else if (time >= max_time) { // generate a new time frame to generate the next block
@@ -78,10 +79,15 @@ public class Level {
 
 	}
 
-	private void generate_spikes() {
+	private void generate_spikes(boolean two) {
 		linkedObstacles.add(new Obstacle(0, rightEndOfScreen));
 		new SpriteRenderer(linkedObstacles.getLast(), Texture.getByPath("resources/spike_grey.png"));
+		if(two == true) {
+			linkedObstacles.add(new Obstacle(0, rightEndOfScreen+ 10));
+			new SpriteRenderer(linkedObstacles.getLast(), Texture.getByPath("resources/spike_grey.png"));
+		}
 	}
+	
 	
 	private void generate_land() {
 		linkedBuildings.add(
@@ -97,8 +103,10 @@ public class Level {
 	}
 	
 	private int time_generate() {
-		int random_time = 40 + rand.nextInt(100); //change the number in nextInt to increase or decrease the possible amount of time between obstacles
+		int random_time = 30 + rand.nextInt(100); //change the number in nextInt to increase or decrease the possible amount of time between obstacles
 		return random_time;
+		//To-do TWO SPIKES!!:D
+		//Cool down?
 	}
 	
 
