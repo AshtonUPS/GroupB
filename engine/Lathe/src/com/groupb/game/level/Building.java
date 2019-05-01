@@ -6,7 +6,8 @@ import com.groupb.lathe.math.Vector3f;
 public class Building extends GameObject{
 	
 	//private int width, height; 
-	private final float speed = 2f;
+	//private final float speed = 2f;
+	private float speed = 2f;
 	private Vector3f position;
 	
 	/*
@@ -27,14 +28,28 @@ public class Building extends GameObject{
 		position.x = x;
 	}
 	
+	public Building(int y, int x, float speed) {	//Added y
+		super();
+		position = getPosition();
+		position.y = y;
+		position.x = x;
+		this.speed = speed;
+	}
 	
-	
+	public void faster(){
+		speed = speed + 0.1f;
+		//TRIPPY LOL
+	}
+		
 	
 	@Override
 	public void update() {
 		position.x-=speed;
+		//faster(); // trippy it looks like this becuase each individual  is being chan 
+		
 		
 	}
+	
 	
 
 	
