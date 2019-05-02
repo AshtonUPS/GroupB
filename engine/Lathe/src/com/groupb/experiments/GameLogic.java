@@ -1,5 +1,6 @@
 package com.groupb.experiments;
 
+import static org.lwjgl.opengl.GL11.glClearColor;
 import com.groupb.game.player.BasicMovement;
 import com.groupb.lathe.engine.IGameLogic;
 import com.groupb.lathe.engine.Window;
@@ -15,6 +16,8 @@ public class GameLogic implements IGameLogic {
 
 	@Override
 	public void init() {
+		
+		
 		// Setup Camera
 		c = new Camera();
 		c.enable();
