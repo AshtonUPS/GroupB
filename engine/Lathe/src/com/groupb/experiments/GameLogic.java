@@ -8,6 +8,8 @@ import com.groupb.lathe.entity.Camera;
 import com.groupb.lathe.entity.GameObject;
 import com.groupb.lathe.entity.components.SpriteRenderer;
 import com.groupb.lathe.graphics.Texture;
+import static org.lwjgl.glfw.GLFW.GLFW_KEY_SPACE;
+
 
 public class GameLogic implements IGameLogic {
 
@@ -25,7 +27,7 @@ public class GameLogic implements IGameLogic {
 		obj = new GameObject();
 		SpriteRenderer sr = new SpriteRenderer(obj, Texture.getByPath("resources/default.png"));
 		
-		new BasicMovement(obj);
+		new BasicMovement(obj, GLFW_KEY_SPACE);
 
 		System.out.println(obj);
 		System.out.println(c);

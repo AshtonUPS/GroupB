@@ -8,11 +8,13 @@ import org.junit.jupiter.api.Test;
 import com.groupb.game.player.BasicMovement;
 import com.groupb.lathe.entity.GameObject;
 
+import static org.lwjgl.glfw.GLFW.GLFW_KEY_SPACE;
+
 class BasicMovementTest {
 
 	// basic initialization of game object and game
 	private GameObject testObject = new GameObject();
-	private BasicMovement testBM = new BasicMovement(testObject);
+	private BasicMovement testBM = new BasicMovement(testObject, GLFW_KEY_SPACE);
 	private int cooldown_length = 40;
 
 	/*

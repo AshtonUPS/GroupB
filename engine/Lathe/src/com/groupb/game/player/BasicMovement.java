@@ -14,9 +14,11 @@ import com.groupb.lathe.math.Vector3f;
 
 public class BasicMovement extends GameComponent {
 
+	private int jumpKey;
 	
-	public BasicMovement(GameObject parent) {
+	public BasicMovement(GameObject parent, int keycode) {
 		super(parent);
+		jumpKey = keycode;
 	}
 
 	private int velocity = 8;
@@ -71,7 +73,7 @@ public class BasicMovement extends GameComponent {
 	
 	
 	public void input(Window w) {
-		if (w.isKeyPressed(GLFW_KEY_SPACE)) {
+		if (w.isKeyPressed(jumpKey)) {
 			//assert isJumping to be true
 			
 			if(inCoolDown == false)	{

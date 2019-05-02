@@ -9,6 +9,8 @@ import com.groupb.lathe.entity.GameObject;
 import com.groupb.lathe.entity.components.SpriteRenderer;
 import com.groupb.lathe.graphics.Texture;
 
+import static org.lwjgl.glfw.GLFW.GLFW_KEY_SPACE;
+
 public class TestGame3 implements IGameLogic {
 	Camera c;
 	Level l;
@@ -28,7 +30,7 @@ public class TestGame3 implements IGameLogic {
 		obj = new GameObject();
 		SpriteRenderer sr = new SpriteRenderer(obj, Texture.getByPath("resources/player.png"));
 		
-		new BasicMovement(obj);
+		new BasicMovement(obj, GLFW_KEY_SPACE);
 		
 		
 	}
