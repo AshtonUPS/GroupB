@@ -70,7 +70,7 @@ public class Level {
 		//CLEAN UP
 		if (linkedBuildings.peek() != null && linkedBuildings.peek().getPosition().x <= leftEndOfScreen) {
 			/// linkedBuildings.removeFirst(); // clean up
-			// linkedBuildings.poll().destroy();
+			linkedBuildings.poll().destroy();
 		}
 		
 		/* TEST SPEED FOR GROUND NOT WORKING YET
