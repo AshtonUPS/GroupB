@@ -40,6 +40,10 @@ public class Building extends GameObject{
 		speed = speed + 0.1f;
 		//TRIPPY LOL
 	}
+	
+	public void setXPosition(int x) {
+		position.x = x;
+	}
 		
 	
 	@Override
