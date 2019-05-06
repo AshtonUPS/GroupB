@@ -39,7 +39,7 @@
 							<transformers>
 								<transformer
 									implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-									<mainClass>com.groupb.lathe.tests.GameLauncher</mainClass>
+									<mainClass>com.groupb.lathe.experiments.Launcher</mainClass>
 								</transformer>
 							</transformers>
 						</configuration>

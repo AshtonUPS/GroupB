@@ -22,7 +22,7 @@ public class BasicMovement extends GameComponent {
 	}
 
 	private int velocity = 8;
-	private int cooldown = 40;
+	private int cooldown = 20;
 	private int cooldown_timer = 0;
 	private int ground_level = 0;
 	private float rotation = 0f;

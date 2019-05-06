@@ -1,6 +1,8 @@
 package com.groupb.experiments;
 
 import static org.lwjgl.opengl.GL11.glClearColor;
+
+import com.groupb.game.level.Level;
 import com.groupb.game.player.BasicMovement;
 import com.groupb.lathe.engine.IGameLogic;
 import com.groupb.lathe.engine.Window;
@@ -13,35 +15,39 @@ import static org.lwjgl.glfw.GLFW.GLFW_KEY_SPACE;
 
 public class GameLogic implements IGameLogic {
 
-	GameObject obj;
 	Camera c;
-
+	Level l;
+	GameObject obj;
+	
+	
+	
+	
 	@Override
 	public void init() {
 		
-		
-		// Setup Camera
+		l =  new Level();
+
 		c = new Camera();
 		c.enable();
-
+		
 		obj = new GameObject();
-		SpriteRenderer sr = new SpriteRenderer(obj, Texture.getByPath("resources/default.png"));
+		SpriteRenderer sr = new SpriteRenderer(obj, Texture.getByPath("resources/player.png"));
 		
 		new BasicMovement(obj, GLFW_KEY_SPACE);
-
-		System.out.println(obj);
-		System.out.println(c);
+		
 		
 	}
 
 	@Override
-	public void input(Window window) {
-		GameObject.dispatchInputs(window);
+	public void input(Window w) {
+		GameObject.dispatchInputs(w);
 	}
 
 	@Override
 	public void update() {
 		GameObject.updateAll();
+		l.update();
+		
 	}
 
 	@Override
@@ -51,8 +57,6 @@ public class GameLogic implements IGameLogic {
 
 	@Override
 	public void cleanup() {
-		// TODO Auto-generated method stub
-
 	}
-
+	
 }
